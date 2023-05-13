@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attributes</title>
+  <script src="./vue.js"></script>
+  <style>
+        .magenta {
+            background-color: magenta;
+            width: 30%;
+            padding-left: 30px;
+            color: gold;
+        }
+        .branco {
+            background-color: white;
+        }
+        .verde {
+            background-color: limegreen;
+            width: 30%; 
+            padding-left: 30px;
+            color: gold;
+        }
+        .azul {
+            background-color: blue;
+            width: 20%;
+            padding-left: 30px;
+            color: gold;
+        }
+        .vermelho {
+            background-color: red;
+        }
+        .borda {
+            border: 3px solid gold;
+        }
+        .principal {
+            width: 300px;
+            height: 200px;
+        }
+        .comun {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+        }
+        hr {
+            color: brown;
+        }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <a 
+    href="https://vuejs.org" 
+    target="_blank"
+    @click="previnirComportamentoPadrao($event)"
+    >
+       Link
+    </a> <br/>
+    Mensagem: {{ msg }} <hr/>
+    <button @click.once="executarUmaVez()">Botao</button>
+    <p>Cliques: {{ cliques }}</p> <hr/>
+    <form @submit.prevent="previnirUmaVez()">
+        <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <script>
+    const vm = new Vue({
+      el:"#app",
+      data:{
+        msg:"",
+        cliques: 0,
+        formulario: "",
+      },
+      method:{
+        previnirComportamentoPadrao() {
+            event.preventDefault();
+            this.msg ="Comportamento Padrao ativado";
+        },
+        executarUmaVez() {
+            this.cliques++;
+        },
+        executarUmaVez() {
+            this.formulario = "Previnindo o comportamento padrao";
+        }
+      },
+    });
+  </script>
+</body>
+</html>
