@@ -60,9 +60,13 @@
     Mensagem: {{ msg }} <hr/>
     <button @click.once="executarUmaVez()">Botao</button>
     <p>Cliques: {{ cliques }}</p> <hr/>
-    <form @submit.prevent="previnirUmaVez()">
+    <form name="form" @submit.prevent.once="previnirUmaVez()">
         <button type="submit">Enviar</button>
     </form>
+    <p>Formulario: {{ formulario }}</p>
+    <hr/>
+    <input type="text" @keyup.Shift.Enter ="capturandoTeclas($event)"/>
+    <p>Teclas: {{ teclas }}</p>
   </div>
   <script>
     const vm = new Vue({
@@ -71,10 +75,10 @@
         msg:"",
         cliques: 0,
         formulario: "",
+        teclas:"",
       },
       method:{
         previnirComportamentoPadrao() {
-            event.preventDefault();
             this.msg ="Comportamento Padrao ativado";
         },
         executarUmaVez() {
@@ -82,6 +86,9 @@
         },
         executarUmaVez() {
             this.formulario = "Previnindo o comportamento padrao";
+        },
+        capturandoTeclas(evento) {
+            this.teclas = "Modificadores encadeados com sucesso!";
         }
       },
     });
